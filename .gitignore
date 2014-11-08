@@ -1,0 +1,5 @@
+.DS_Store
+.vagrant/
+*vdi
+*zip
+12cR1/*/*
