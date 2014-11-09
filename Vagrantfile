@@ -13,8 +13,8 @@ VAGRANTFILE_API_VERSION = "2"
 ##### BEGIN CUSTOMIZATION #####
 #############################
 #define number of nodes
-num_APPLICATION 	= 1
-num_LEAF_INSTANCES	= 1
+num_APPLICATION 	= 0
+num_LEAF_INSTANCES	= 0
 num_DB_INSTANCES	= 3
 #
 #define number of cores for guest
