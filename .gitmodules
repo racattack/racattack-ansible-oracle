@@ -1,0 +1,3 @@
+[submodule "stagefiles/ansible-oracle"]
+	path = stagefiles/ansible-oracle
+	url = https://github.com/kikitux/ansible-oracle
