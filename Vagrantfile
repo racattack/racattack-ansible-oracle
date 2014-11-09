@@ -100,7 +100,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   if File.directory?("stagefiles")
     # our shared folder for scripts
-    config.vm.synced_folder "stagefiles", "/media/stagefiles", :mount_options => ["dmode=555","fmode=444"]
+    config.vm.synced_folder "stagefiles", "/media/stagefiles", :mount_options => ["dmode=555","fmode=444","gid=54321"]
 
     #run some scripts
     config.vm.provision :shell, :inline => $etc_hosts_script
@@ -108,7 +108,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   if File.directory?("12cR1")
     # our shared folder for oracle 12c installation files
-    config.vm.synced_folder "12cR1", "/media/sf_12cR1", :mount_options => ["dmode=775","fmode=775","uid=54320","gid=54321"]
+    config.vm.synced_folder "12cR1", "/media/sf_12cR1", :mount_options => ["dmode=775","fmode=664","uid=54320","gid=54321"]
   end
 
 
