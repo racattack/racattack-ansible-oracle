@@ -1,7 +1,7 @@
 ---
   hostgroup: racattack
   role_separation: true
-  device_persistence: udev
+  device_persistence: asmlib
 
   oracle_groups:
     - { group: asmdba, gid: 54318 }
@@ -20,7 +20,7 @@
     - { username: grid, uid: 54320, primgroup: oinstall, othergroups: "asmadmin,asmdba,asmoper,dba", passwd: "$6$/yJx24id$K8gB.l5GEMJlv9Q.v1bulyHiRRqZlZaUwoInNEixd9FBRxj9wyZYyyWzgOkRg9gBMfheH/kgRjranYpnAINRI1" }
 
   oracle_sw_copy: false 
-  oracle_sw_unpack: false
+  oracle_sw_unpack: true
   oracle_stage: /media/sf_12cR1
   oracle_stage_remote: /media/sf_12cR1
 
