@@ -55,9 +55,9 @@ inventory_ansible << "[hub]\n"
 (1..num_DB_INSTANCES).each do |i|
   inventory_ansible << "collabn#{i}.racattack ansible_ssh_user=root ansible_ssh_pass=root\n"
 end
-inventory_ansible << "[racattack]\n"
-inventory_ansible << "leaf\n"
-inventory_ansible << "hub\n"
+inventory_ansible << "[racattack:children]\n"
+inventory_ansible << "leaf\n"	if num_LEAF_INSTANCES > 0
+inventory_ansible << "hub\n"	if num_DB_INSTANCES > 0
 inventory_ansible.close
 
 $etc_hosts_script = <<SCRIPT
@@ -174,16 +174,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         port=2
         #how many shared disk
         (1..count_shared_disk).each do |disk|
-          file_to_dbdisk = "#{path_shared_disk}/racattack-shared-disk#{disk}.vdi"
-          if !File.exist?(file_to_dbdisk) and num_DB_INSTANCES==i
+          file_to_dbdisk = "#{path_shared_disk}/racattack-shared-disk"
+          if !File.exist?("#{file_to_dbdisk}#{disk}.vdi")
             unless give_info==false
               puts "on first boot shared disks will be created, this will take some time"
               give_info=false
             end
-            vb.customize ['createhd', '--filename', file_to_dbdisk, '--size', (size_shared_disk * 1024).floor, '--variant', 'fixed']
-            vb.customize ['modifyhd', file_to_dbdisk, '--type', 'shareable']
+            vb.customize ['createhd', '--filename', "#{file_to_dbdisk}#{disk}.vdi", '--size', (size_shared_disk * 1024).floor, '--variant', 'fixed']
+            vb.customize ['modifyhd', "#{file_to_dbdisk}#{disk}.vdi", '--type', 'shareable']
           end
-          vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', port, '--device', 0, '--type', 'hdd', '--medium', file_to_dbdisk]
+          vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', port, '--device', 0, '--type', 'hdd', '--medium', "#{file_to_dbdisk}#{disk}.vdi"]
           port=port+1
         end
       end
