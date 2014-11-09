@@ -16,13 +16,13 @@
 
   oracle_users:         # Passwd :oracle
     - { username: oracle, uid: 54321, primgroup: oinstall, othergroups: "dba,asmdba,backupdba,dgdba,kmdba,oper", passwd: "$6$VwR.53R4$HtKoSj3TxZCc4nWoqCrnBx8ldjJ2e7pfe1KKEvjkctAK653RL5FfsPRh5SuhrZEcGElba.G68EPHG3dV5z7ty." }
-  grid_users:           # Passwd :Oracle123
+  grid_users:           # Passwd :grid
     - { username: grid, uid: 54320, primgroup: oinstall, othergroups: "asmadmin,asmdba,asmoper,dba", passwd: "$6$/yJx24id$K8gB.l5GEMJlv9Q.v1bulyHiRRqZlZaUwoInNEixd9FBRxj9wyZYyyWzgOkRg9gBMfheH/kgRjranYpnAINRI1" }
 
   oracle_sw_copy: false 
-  oracle_sw_unpack: true
+  oracle_sw_unpack: false
   oracle_stage: /media/sf_12cR1
-#  oracle_stage_remote: /media/sf_12cR1
+  oracle_stage_remote: /media/sf_12cR1
 
   configure_interconnect: false
   configure_ssh: true
