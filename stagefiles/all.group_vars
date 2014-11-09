@@ -22,6 +22,7 @@
   oracle_sw_copy: false 
   oracle_sw_unpack: true
   oracle_stage: /media/sf_12cR1
+  oracle_stage_remote: /media/sf_12cR1
 
   configure_interconnect: false
   configure_ssh: true

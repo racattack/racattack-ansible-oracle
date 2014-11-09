@@ -45,17 +45,21 @@ count_shared_disk = 4
 inventory_ansible = File.open("stagefiles/ansible-oracle/inventory/racattack","w")
 inventory_ansible << "[application]\n"
 (1..num_APPLICATION).each do |i|
-  inventory_ansible << "collaba#{i}\n"
+  inventory_ansible << "collaba#{i} ansible_ssh_user=root ansible_ssh_pass=root\n"
 end
 inventory_ansible << "[leaf]\n"
 (1..num_LEAF_INSTANCES).each do |i|
-  inventory_ansible << "collabl#{i}\n"
+  inventory_ansible << "collabl#{i} ansible_ssh_user=root ansible_ssh_pass=root\n"
 end
 inventory_ansible << "[hub]\n"
 (1..num_DB_INSTANCES).each do |i|
   inventory_ansible << "collabn#{i} ansible_ssh_user=root ansible_ssh_pass=root\n"
 end
 inventory_ansible << "[flex:children]\n"
+inventory_ansible << "leaf\n"	if num_LEAF_INSTANCES > 0
+inventory_ansible << "hub\n"	if num_DB_INSTANCES > 0
+inventory_ansible << "[all:children]\n"
+inventory_ansible << "application\n"	if num_APPLICATION > 0
 inventory_ansible << "leaf\n"	if num_LEAF_INSTANCES > 0
 inventory_ansible << "hub\n"	if num_DB_INSTANCES > 0
 inventory_ansible.close
