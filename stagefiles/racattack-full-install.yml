@@ -4,7 +4,7 @@
  - name: Host configuration
    hosts: flex
    roles:
-      - orahost
+      #- orahost
 
  - name: Host storage configuration
    hosts: hub
@@ -12,7 +12,7 @@
       - orahost-storage
 
  - name: Oracle Grid Infrastructure installation & ASM Configuration
-   hosts: flex
+   hosts: hub
    roles:
       - oraswgi-install
       #- oraasm-createdg
