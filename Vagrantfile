@@ -13,9 +13,9 @@ VAGRANTFILE_API_VERSION = "2"
 ##### BEGIN CUSTOMIZATION #####
 #############################
 #define number of nodes
-num_APPLICATION 	= 0
-num_LEAF_INSTANCES	= 0
-num_DB_INSTANCES	= 2
+num_APPLICATION 	= 1
+num_LEAF_INSTANCES	= 1
+num_DB_INSTANCES	= 3
 #
 #define number of cores for guest
 num_CORE=1
@@ -53,9 +53,9 @@ inventory_ansible << "[leaf]\n"
 end
 inventory_ansible << "[hub]\n"
 (1..num_DB_INSTANCES).each do |i|
-  inventory_ansible << "collabn#{i}.racattack ansible_ssh_user=root ansible_ssh_pass=root\n"
+  inventory_ansible << "collabn#{i} ansible_ssh_user=root ansible_ssh_pass=root\n"
 end
-inventory_ansible << "[racattack:children]\n"
+inventory_ansible << "[flex:children]\n"
 inventory_ansible << "leaf\n"	if num_LEAF_INSTANCES > 0
 inventory_ansible << "hub\n"	if num_DB_INSTANCES > 0
 inventory_ansible.close
