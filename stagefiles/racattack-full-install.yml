@@ -4,7 +4,7 @@
  - name: Host configuration
    hosts: flex
    roles:
-      #- orahost
+      - orahost
 
  - name: Host storage configuration
    hosts: hub
@@ -15,10 +15,10 @@
    hosts: hub
    roles:
       - oraswgi-install
-      #- oraasm-createdg
+      - oraasm-createdg
 
  - name: Database Server Installation & Database Creation
    hosts: hub
    roles:
-      #- oraswdb-install
-      #- oradb-create
+      - oraswdb-install
+      - oradb-create

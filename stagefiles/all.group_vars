@@ -3,6 +3,8 @@
   role_separation: true
   device_persistence: asmlib
 
+  clustertype=flex
+
   oracle_groups:
     - { group: asmdba, gid: 54318 }
     - { group: asmoper, gid: 54319 }
