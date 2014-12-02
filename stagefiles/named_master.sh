@@ -46,6 +46,21 @@ collabn3-vip            A       192.168.78.63
 collabn4                A       192.168.78.54
 collabn4-priv           A       172.16.100.54
 collabn4-vip            A       192.168.78.64
+collabn5                A       192.168.78.55
+collabn5-priv           A       172.16.100.55
+collabn5-vip            A       192.168.78.65
+collabn6                A       192.168.78.56
+collabn6-priv           A       172.16.100.56
+collabn6-vip            A       192.168.78.66
+collabn7                A       192.168.78.57
+collabn7-priv           A       172.16.100.57
+collabn7-vip            A       192.168.78.67
+collabn8                A       192.168.78.58
+collabn8-priv           A       172.16.100.58
+collabn8-vip            A       192.168.78.68
+collabn9                A       192.168.78.59
+collabn9-priv           A       172.16.100.59
+collabn9-vip            A       192.168.78.69
 collabl1                A       192.168.78.71
 collabl1-priv           A       172.16.100.71
 collabl1-vip            A       192.168.78.81
@@ -78,9 +93,11 @@ collaba2                A       192.168.78.92
 collaba3                A       192.168.78.93
 collaba4                A       192.168.78.94
 localhost               A       127.0.0.1
+localhost.              A       127.0.0.1
+collabn-cluster-gns.collabn.racattack.     A       192.168.78.244
 $ORIGIN collabn.racattack.
 @                       NS      collabn-cluster-gns.collabn.racattack.
-collabn-cluster-gns     A       192.168.78.244
+collabn-cluster-gns.collabn.racattack.     A       192.168.78.244
 ' \
 > /var/named/racattack
 

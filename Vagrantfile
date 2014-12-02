@@ -14,8 +14,8 @@ VAGRANTFILE_API_VERSION = "2"
 #############################
 #define number of nodes
 num_APPLICATION 	= 0
-num_LEAF_INSTANCES	= 0
-num_DB_INSTANCES	= 3
+num_LEAF_INSTANCES	= 2
+num_DB_INSTANCES	= 1
 #
 #define number of cores for guest
 num_CORE=1
@@ -32,7 +32,7 @@ memory_LEAF_INSTANCES	= 2300
 memory_DB_INSTANCES	= 3072
 #        
 #size of shared disk in GB
-size_shared_disk	= 5
+size_shared_disk	= 15
 #location of shared disk
 path_shared_disk = "."
 #number of shared disks
@@ -42,26 +42,30 @@ count_shared_disk = 4
 ##### END CUSTOMIZATION #####
 #############################
 
+# We need 1 DB HUB, so assume 1 if configured as 0 
+num_DB_INSTANCES = 1 if num_DB_INSTANCES == 0
+
+#create inventory for ansible to run
 inventory_ansible = File.open("stagefiles/ansible-oracle/inventory/racattack","w")
-inventory_ansible << "[application]\n"
+inventory_ansible << "[racattack-application]\n"
 (1..num_APPLICATION).each do |i|
   inventory_ansible << "collaba#{i} ansible_ssh_user=root ansible_ssh_pass=root\n"
 end
-inventory_ansible << "[leaf]\n"
+inventory_ansible << "[racattack-leaf]\n"
 (1..num_LEAF_INSTANCES).each do |i|
   inventory_ansible << "collabl#{i} ansible_ssh_user=root ansible_ssh_pass=root\n"
 end
-inventory_ansible << "[hub]\n"
+inventory_ansible << "[racattack-hub]\n"
 (1..num_DB_INSTANCES).each do |i|
   inventory_ansible << "collabn#{i} ansible_ssh_user=root ansible_ssh_pass=root\n"
 end
-inventory_ansible << "[flex:children]\n"
-inventory_ansible << "leaf\n"	if num_LEAF_INSTANCES > 0
-inventory_ansible << "hub\n"	if num_DB_INSTANCES > 0
-inventory_ansible << "[all:children]\n"
-inventory_ansible << "application\n"	if num_APPLICATION > 0
-inventory_ansible << "leaf\n"	if num_LEAF_INSTANCES > 0
-inventory_ansible << "hub\n"	if num_DB_INSTANCES > 0
+inventory_ansible << "[racattack:children]\n"
+inventory_ansible << "racattack-leaf\n" if num_LEAF_INSTANCES > 0
+inventory_ansible << "racattack-hub\n"  if num_DB_INSTANCES > 0
+inventory_ansible << "[racattack-all:children]\n"
+inventory_ansible << "racattack-application\n"  if num_APPLICATION > 0
+inventory_ansible << "racattack-leaf\n" if num_LEAF_INSTANCES > 0
+inventory_ansible << "racattack-hub\n"  if num_DB_INSTANCES > 0
 inventory_ansible.close
 
 $etc_hosts_script = <<SCRIPT
