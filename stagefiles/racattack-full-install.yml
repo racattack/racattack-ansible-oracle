@@ -17,12 +17,8 @@
       - oraswgi-install
       - oraasm-createdg
 
- - name: Database Server Installation
-   hosts: racattack
-   roles:
-      - oraswdb-install
-      
- - name: Database Creation
+ - name: Database Server Installation & Database Creation
    hosts: racattack-hub
    roles:
+      - oraswdb-install
       - oradb-create
