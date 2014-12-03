@@ -2,7 +2,7 @@
 
 
  - name: Host configuration
-   hosts: racattack
+   hosts: racattack-all
    roles:
       - orahost
 
@@ -11,14 +11,14 @@
    roles:
       - orahost-storage
 
- - name: Oracle Grid Infrastructure installation & ASM Configuration
-   hosts: racattack-hub
+ - name: Grid Install
+   hosts: racattack
    roles:
       - oraswgi-install
-      - oraasm-createdg
 
- - name: Database Server Installation & Database Creation
+ - name: ASM Configuration & Database Server Installation & Database Creation
    hosts: racattack-hub
    roles:
+      - oraasm-createdg
       - oraswdb-install
       - oradb-create
