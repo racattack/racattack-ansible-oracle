@@ -20,6 +20,14 @@ num_DB_INSTANCES	= 1
 #define number of cores for guest
 num_CORE=1
 #
+#note: if num_LEAF_INSTANCES is 1 or more, cluster will be defaulted to flex
+#define cluster type, standard or flex
+if ENV['setup'] == "standard"
+  cluster_type = "standard"
+else
+  cluster_type = "flex"
+end
+#
 #define memory for each type of node in MBytes
 #
 #for leaf nodes, the minimun can be  2300, otherwise pre-check will fail for
@@ -44,6 +52,7 @@ count_shared_disk = 4
 
 # We need 1 DB HUB, so assume 1 if configured as 0 
 num_DB_INSTANCES = 1 if num_DB_INSTANCES == 0
+cluster_type = "flex" if num_LEAF_INSTANCES > 0
 
 #create inventory for ansible to run
 inventory_ansible = File.open("stagefiles/ansible-oracle/inventory/racattack","w")
@@ -202,7 +211,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         puts vm_name + " dns server role is master"
         config.vm.provision :shell, :inline => "sh /media/stagefiles/named_master.sh"
         if ENV['setup'] 
-          config.vm.provision :shell, :inline => "sh /media/stagefiles/run_ansible_playbook.sh"
+          config.vm.provision :shell, :inline => "sh /media/stagefiles/run_ansible_playbook.sh #{cluster_type}"
         end
       end
       if vm_name == "collabn2" 

@@ -8,4 +8,10 @@ for x in {a,l,n}{1..9}; do
 done
 echo "master_node: true" > /media/stagefiles/ansible-oracle/host_vars/collabn1
 
-time ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook /media/stagefiles/ansible-oracle/racattack-full-install.yml -i /media/stagefiles/ansible-oracle/inventory/racattack
+if [ $1 == "standard" ] ; then
+  cluster_type="standard"
+else
+  cluster_type="flex"
+fi
+
+time ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook /media/stagefiles/ansible-oracle/racattack-full-install.yml -i /media/stagefiles/ansible-oracle/inventory/racattack -e oracle_gi_cluster_type=$cluster_type
