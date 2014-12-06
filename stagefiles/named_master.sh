@@ -92,12 +92,16 @@ collaba1                A       192.168.78.91
 collaba2                A       192.168.78.92
 collaba3                A       192.168.78.93
 collaba4                A       192.168.78.94
+collaba5                A       192.168.78.95
+collaba6                A       192.168.78.96
+collaba7                A       192.168.78.97
+collaba8                A       192.168.78.98
+collaba9                A       192.168.78.99
 localhost               A       127.0.0.1
 localhost.              A       127.0.0.1
-collabn-cluster-gns.collabn.racattack.     A       192.168.78.244
+collabn-cluster-gns.racattack.     A       192.168.78.244
 $ORIGIN collabn.racattack.
-@                       NS      collabn-cluster-gns.collabn.racattack.
-collabn-cluster-gns.collabn.racattack.     A       192.168.78.244
+@                       NS      collabn-cluster-gns.racattack.
 ' \
 > /var/named/racattack
 
@@ -118,6 +122,11 @@ $ORIGIN 100.16.172.in-addr.arpa.
 52                      PTR     collabn2-priv.racattack.
 53                      PTR     collabn3-priv.racattack.
 54                      PTR     collabn4-priv.racattack.
+55                      PTR     collabn5-priv.racattack.
+56                      PTR     collabn6-priv.racattack.
+57                      PTR     collabn7-priv.racattack.
+58                      PTR     collabn8-priv.racattack.
+59                      PTR     collabn9-priv.racattack.
 71                      PTR     collabl1-priv.racattack.
 72                      PTR     collabl2-priv.racattack.
 73                      PTR     collabl3-priv.racattack.
@@ -131,15 +140,25 @@ $ORIGIN 78.168.192.in-addr.arpa.
 251                     PTR     collabn-cluster-scan.racattack.
 252                     PTR     collabn-cluster-scan.racattack.
 253                     PTR     collabn-cluster-scan.racattack.
-244			PTR	collabn-cluster-gns.collabn.racattack.
+244			PTR	collabn-cluster-gns.racattack.
 51                      PTR     collabn1.racattack.
 52                      PTR     collabn2.racattack.
 53                      PTR     collabn3.racattack.
 54                      PTR     collabn4.racattack.
+55                      PTR     collabn5.racattack.
+56                      PTR     collabn6.racattack.
+57                      PTR     collabn7.racattack.
+58                      PTR     collabn8.racattack.
+59                      PTR     collabn9.racattack.
 61                      PTR     collabn1-vip.racattack.
 62                      PTR     collabn2-vip.racattack.
 63                      PTR     collabn3-vip.racattack.
 64                      PTR     collabn4-vip.racattack.
+65                      PTR     collabn5-vip.racattack.
+66                      PTR     collabn6-vip.racattack.
+67                      PTR     collabn7-vip.racattack.
+68                      PTR     collabn8-vip.racattack.
+69                      PTR     collabn9-vip.racattack.
 71                      PTR     collabl1.racattack.
 81                      PTR     collabl1-vip.racattack.
 72                      PTR     collabl2.racattack.
@@ -162,6 +181,11 @@ $ORIGIN 78.168.192.in-addr.arpa.
 92                      PTR     collaba2.racattack.
 93                      PTR     collaba3.racattack.
 94                      PTR     collaba4.racattack.
+95                      PTR     collaba5.racattack.
+96                      PTR     collaba6.racattack.
+97                      PTR     collaba7.racattack.
+98                      PTR     collaba8.racattack.
+99                      PTR     collaba9.racattack.
 ' \
 > /var/named/in-addr.arpa
 

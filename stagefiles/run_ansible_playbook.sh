@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cp /media/stagefiles/racattack-full-install.yml /media/stagefiles/ansible-oracle/racattack-full-install.yml 
-cp /media/stagefiles/all.group_vars /media/stagefiles/ansible-oracle/group_vars/all
+cp /media/stagefiles/racattack.group_vars /media/stagefiles/ansible-oracle/group_vars/racattack
 
 for x in {a,l,n}{1..9}; do
   echo "master_node: false" > /media/stagefiles/ansible-oracle/host_vars/collab$x

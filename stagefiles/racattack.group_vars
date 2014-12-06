@@ -1,5 +1,5 @@
 ---
-  hostgroup: all
+  hostgroup: racattack
   role_separation: true
   device_persistence: asmlib
 
@@ -48,6 +48,8 @@
   oracle_asm_init_dg: data        
   oracle_gi_nic_pub: eth1
   oracle_gi_nic_priv: eth2
+  oracle_gi_gns_subdomain: collabn.racattack
+  oracle_gi_gns_vip: collabn-cluster-gns.racattack.
 
   oracle_sw_image_db:
        - { filename: linuxamd64_12102_database_1of2.zip, version: 12.1.0.2, download: false }

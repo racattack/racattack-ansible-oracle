@@ -12,7 +12,7 @@
       - orahost-storage
 
  - name: Grid Install
-   hosts: racattack
+   hosts: racattack-hub
    roles:
       - oraswgi-install
 
