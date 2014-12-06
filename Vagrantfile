@@ -14,7 +14,7 @@ VAGRANTFILE_API_VERSION = "2"
 #############################
 #define number of nodes
 num_APPLICATION 	= 0
-num_LEAF_INSTANCES	= 2
+num_LEAF_INSTANCES	= 0
 num_DB_INSTANCES	= 1
 #
 #define number of cores for guest
@@ -119,8 +119,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # our shared folder for scripts
     config.vm.synced_folder "stagefiles", "/media/stagefiles", :mount_options => ["dmode=555","fmode=444","gid=54321"]
 
-    #run some scripts
-    config.vm.provision :shell, :inline => $etc_hosts_script
+    #clean all
+    if ENV['setup'] == "clean"
+      config.vm.provision :shell, :inline => "sh /media/stagefiles/clean.sh YES"
+    else
+      #run some scripts
+      config.vm.provision :shell, :inline => $etc_hosts_script
+    end
+
   end
 
   if File.directory?("12cR1")
@@ -199,24 +205,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             end
             vb.customize ['createhd', '--filename', "#{file_to_dbdisk}#{disk}.vdi", '--size', (size_shared_disk * 1024).floor, '--variant', 'fixed']
             vb.customize ['modifyhd', "#{file_to_dbdisk}#{disk}.vdi", '--type', 'shareable']
+            vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', port, '--device', 0, '--type', 'hdd', '--medium', "#{file_to_dbdisk}#{disk}.vdi"]
           end
-          vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', port, '--device', 0, '--type', 'hdd', '--medium', "#{file_to_dbdisk}#{disk}.vdi"]
           port=port+1
         end
       end
       config.vm.network :private_network, ip: lanip
       config.vm.network :private_network, ip: privip
-      #config.vm.provision :shell, :inline => "sh /media/stagefiles/setup_ssh_known_hosts.sh"
-      if vm_name == "collabn1" 
-        puts vm_name + " dns server role is master"
-        config.vm.provision :shell, :inline => "sh /media/stagefiles/named_master.sh"
-        if ENV['setup'] 
-          config.vm.provision :shell, :inline => "sh /media/stagefiles/run_ansible_playbook.sh #{cluster_type}"
+      if not ENV['setup'] == "clean"
+        if vm_name == "collabn1" 
+          puts vm_name + " dns server role is master"
+          config.vm.provision :shell, :inline => "sh /media/stagefiles/named_master.sh"
+          if ENV['setup']
+            config.vm.provision :shell, :inline => "sh /media/stagefiles/run_ansible_playbook.sh #{cluster_type}" 
+          end
         end
-      end
-      if vm_name == "collabn2" 
-        puts vm_name + " dns server role is slave"
-        config.vm.provision :shell, :inline => "sh /media/stagefiles/named_slave.sh"
+        if vm_name == "collabn2" 
+          puts vm_name + " dns server role is slave"
+          config.vm.provision :shell, :inline => "sh /media/stagefiles/named_slave.sh"
+        end
       end
     end
   end

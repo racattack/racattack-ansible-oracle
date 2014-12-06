@@ -1,23 +1,26 @@
 ---
 
-
  - name: Host configuration
    hosts: racattack-all
+   user: root
    roles:
       - orahost
 
  - name: Host storage configuration
    hosts: racattack-hub
+   user: root
    roles:
       - orahost-storage
 
  - name: Grid Install
-   hosts: racattack-hub
+   hosts: racattack
+   user: root
    roles:
       - oraswgi-install
 
  - name: ASM Configuration & Database Server Installation & Database Creation
    hosts: racattack-hub
+   user: root
    roles:
       - oraasm-createdg
       - oraswdb-install
