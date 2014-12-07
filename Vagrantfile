@@ -13,20 +13,12 @@ VAGRANTFILE_API_VERSION = "2"
 ##### BEGIN CUSTOMIZATION #####
 #############################
 #define number of nodes
-num_APPLICATION 	= 0
-num_LEAF_INSTANCES	= 0
-num_DB_INSTANCES	= 1
+num_APPLICATION     = 0
+num_LEAF_INSTANCES  = 0
+num_DB_INSTANCES    = 1
 #
 #define number of cores for guest
 num_CORE=1
-#
-#note: if num_LEAF_INSTANCES is 1 or more, cluster will be defaulted to flex
-#define cluster type, standard or flex
-if ENV['setup'] == "standard"
-  cluster_type = "standard"
-else
-  cluster_type = "flex"
-end
 #
 #define memory for each type of node in MBytes
 #
@@ -35,9 +27,9 @@ end
 #
 #for database nodes, the minimum suggested is 3072
 #
-memory_APPLICATION 	= 1500
-memory_LEAF_INSTANCES	= 2300
-memory_DB_INSTANCES	= 3072
+memory_APPLICATION    = 1500
+memory_LEAF_INSTANCES = 2300
+memory_DB_INSTANCES   = 3072
 #        
 #size of shared disk in GB
 size_shared_disk	= 5
@@ -50,8 +42,18 @@ count_shared_disk = 4
 ##### END CUSTOMIZATION #####
 #############################
 
+# cluster_type 
+#define cluster type, standard or flex
+if ENV['setup'] == "standard"
+  cluster_type = "standard"
+else
+  cluster_type = "flex"
+end
+
 # We need 1 DB HUB, so assume 1 if configured as 0 
 num_DB_INSTANCES = 1 if num_DB_INSTANCES == 0
+
+#note: if num_LEAF_INSTANCES is 1 or more, cluster will be defaulted to flex
 cluster_type = "flex" if num_LEAF_INSTANCES > 0
 
 #create inventory for ansible to run
@@ -84,14 +86,14 @@ echo "overwriting /etc/resolv.conf"
 cat > /etc/resolv.conf <<EOF
 nameserver 192.168.78.51
 nameserver 192.168.78.52
-search racattack
+nameserver 10.0.2.3
+search racattack collabn.racattack
 EOF
 
 cat > /etc/hosts << EOF
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost6 localhost6.localdomain6
 EOF
-
 SCRIPT
 
 #variable used to provide information only once
