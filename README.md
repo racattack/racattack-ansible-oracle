@@ -23,12 +23,12 @@ edit Vagranfile and adjust number of nodes, ram and size of shared disk
 ##### BEGIN CUSTOMIZATION #####
 #############################
 #define number of nodes
-num_APPLICATION     = 0
-num_LEAF_INSTANCES  = 0
-num_DB_INSTANCES    = 1
+num_APPLICATION         =   0
+num_LEAF_INSTANCES      =   0
+num_DB_INSTANCES        =   1
 #
 #define number of cores for guest
-num_CORE=1
+num_CORE                =   1
 #
 #define memory for each type of node in MBytes
 #
@@ -37,16 +37,16 @@ num_CORE=1
 #
 #for database nodes, the minimum suggested is 3072
 #
-memory_APPLICATION    = 1500
-memory_LEAF_INSTANCES = 2300
-memory_DB_INSTANCES   = 3072
+memory_APPLICATION      =   1500
+memory_LEAF_INSTANCES   =   2300
+memory_DB_INSTANCES     =   3072
 #        
 #size of shared disk in GB
-size_shared_disk	= 5
+size_shared_disk        =   5
 #location of shared disk
-path_shared_disk = "."
+path_shared_disk        =   "."
 #number of shared disks
-count_shared_disk = 4
+count_shared_disk       =   4
 #
 #############################
 ##### END CUSTOMIZATION #####
@@ -63,13 +63,14 @@ place oracle binaries at 12cR1/
 `vagrant up` will create the machines
 
 `setup=standard vagrant provision` will setup an standard oracle cluster
+
 `setup=flex vagrant provision` will setup an flex oracle cluster
 
 if any leaf node is defined, cluster will be defaulted to flex
 
-`setup=clean vagrant provision` will delete `/u01` , bring shared disk to clean state and shutdown the vm.
+`setup=clean vagrant provision` will delete `/u01` , clean up previous installation, bring shared disk to clean state and shutdown the vm.
 
-`vagrant up` and will start a clean environment. This is useful to avoid recreating the shared disk since is time consuming task.
+then a `vagrant up` will start a clean environment. This is useful to avoid recreating the shared disk since is time consuming task.
 
 alvaro@kikitux.net
 
