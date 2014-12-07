@@ -1,9 +1,20 @@
 racattack-ansible-oracle
 ========================
-Clone as:
-git clone --recursive https://github.com/kikitux/racattack-ansible-oracle
 
-cd racattack-ansible-oracle
+This is a joint work between 2 projects.
+
+https://github.com/racattack/vagrantfile
+
+and
+
+https://github.com/oravirt/ansible-oracle
+
+The idea is provide a fully automated racattack build from vm to database, 100% hands free
+
+Clone as:
+`git clone --recursive https://github.com/kikitux/racattack-ansible-oracle`
+
+`cd racattack-ansible-oracle`
 
 edit Vagranfile and adjust number of nodes, ram and size of shared disk
 
