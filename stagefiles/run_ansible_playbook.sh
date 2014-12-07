@@ -1,8 +1,5 @@
 #!/bin/bash
 
-id
-
-cat /media/stagefiles/racattack-full-install.yml > /media/stagefiles/ansible-oracle/racattack-full-install.yml 
 [ -f /media/stagefiles/ansible-oracle/group_vars/racattack ] && chmod ugo+rw /media/stagefiles/ansible-oracle/group_vars/racattack
 cat /media/stagefiles/racattack.group_vars > /media/stagefiles/ansible-oracle/group_vars/racattack
 
