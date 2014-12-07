@@ -25,7 +25,8 @@ num_CORE=1
 #for leaf nodes, the minimun can be  2300, otherwise pre-check will fail for
 #automatic ulimit values calculated based on ram
 #
-#for database nodes, the minimum suggested is 3072
+#for database nodes, the minimum suggested is 3072 for standard cluster
+#for flex cluster, consider 4500 or more
 #
 memory_APPLICATION    = 1500
 memory_LEAF_INSTANCES = 2300
