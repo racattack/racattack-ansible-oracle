@@ -40,7 +40,7 @@ memory_LEAF_INSTANCES	= 2300
 memory_DB_INSTANCES	= 3072
 #        
 #size of shared disk in GB
-size_shared_disk	= 15
+size_shared_disk	= 5
 #location of shared disk
 path_shared_disk = "."
 #number of shared disks
