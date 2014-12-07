@@ -9,6 +9,17 @@ edit Vagranfile and adjust number of nodes, ram and size of shared disk
 
 place oracle binaries at 12cR1/
 
+  linuxamd64_12102_database_1of2.zip
+
+  linuxamd64_12102_database_2of2.zip
+
+  linuxamd64_12102_gateways.zip
+
+  linuxamd64_12102_grid_1of2.zip
+
+  linuxamd64_12102_grid_2of2.zip
+
+
 `vagrant up` will create the machines
 
 `setup=standard vagrant provision` will setup an standard oracle cluster
