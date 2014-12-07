@@ -11,7 +11,6 @@ place oracle binaries at 12cR1/
 
     linuxamd64_12102_database_1of2.zip
     linuxamd64_12102_database_2of2.zip
-    linuxamd64_12102_gateways.zip
     linuxamd64_12102_grid_1of2.zip
     linuxamd64_12102_grid_2of2.zip
 
