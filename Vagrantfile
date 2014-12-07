@@ -15,7 +15,7 @@ VAGRANTFILE_API_VERSION = "2"
 #define number of nodes
 num_APPLICATION     = 0
 num_LEAF_INSTANCES  = 0
-num_DB_INSTANCES    = 1
+num_DB_INSTANCES    = 2
 #
 #define number of cores for guest
 num_CORE=1
@@ -34,8 +34,6 @@ memory_DB_INSTANCES   = 3072
 #        
 #size of shared disk in GB
 size_shared_disk	= 5
-#location of shared disk
-path_shared_disk = "."
 #number of shared disks
 count_shared_disk = 4
 #
@@ -200,7 +198,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         port=2
         #how many shared disk
         (1..count_shared_disk).each do |disk|
-          file_to_dbdisk = "#{path_shared_disk}/racattack-shared-disk"
+          file_to_dbdisk = "racattack-shared-disk"
           if !File.exist?("#{file_to_dbdisk}#{disk}.vdi")
             unless give_info==false
               puts "on first boot shared disks will be created, this will take some time"
@@ -208,8 +206,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             end
             vb.customize ['createhd', '--filename', "#{file_to_dbdisk}#{disk}.vdi", '--size', (size_shared_disk * 1024).floor, '--variant', 'fixed']
             vb.customize ['modifyhd', "#{file_to_dbdisk}#{disk}.vdi", '--type', 'shareable']
-            vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', port, '--device', 0, '--type', 'hdd', '--medium', "#{file_to_dbdisk}#{disk}.vdi"]
           end
+          vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', port, '--device', 0, '--type', 'hdd', '--medium', "#{file_to_dbdisk}#{disk}.vdi"]
           port=port+1
         end
       end
