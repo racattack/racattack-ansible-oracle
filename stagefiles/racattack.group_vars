@@ -22,7 +22,6 @@
   oracle_user: oracle
   oracle_group: oinstall
   grid_user: grid
-  grid_group: oinstall
   oracle_sw_copy: false 
   oracle_sw_unpack: true
   oracle_stage: /media/sf_12cR1
@@ -83,7 +82,7 @@
   oracle_reco_dir_asm: "FRA"                                                                                                                                                                                                               
   host_fs_layout:
       u01:
-        {mntp: /u01, device: /dev/sdb, vgname: vgora, pvname: /dev/sdb1, lvname: lvora}
+        {mntp: /u01, device: /dev/sdb, vgname: vgora, pvname: /dev/sdb1, lvname: lvora, fstype: ext4}
 
   asm_diskgroups:  
      - data
