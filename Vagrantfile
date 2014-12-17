@@ -15,7 +15,7 @@ VAGRANTFILE_API_VERSION = "2"
 #define number of nodes
 num_APPLICATION     = 0
 num_LEAF_INSTANCES  = 0
-num_DB_INSTANCES    = 2
+num_DB_INSTANCES    = 1
 #
 #define number of cores for guest
 num_CORE=1
@@ -54,6 +54,11 @@ num_DB_INSTANCES = 1 if num_DB_INSTANCES == 0
 
 #note: if num_LEAF_INSTANCES is 1 or more, cluster will be defaulted to flex
 cluster_type = "flex" if num_LEAF_INSTANCES > 0
+
+# Force cluster_type to standard if GI Version is 11.2.0.4
+if ENV['giver'] == '11.2.0.4'
+  cluster_type = "standard"
+end
 
 #create inventory for ansible to run
 inventory_ansible = File.open("stagefiles/ansible-oracle/inventory/racattack","w")
@@ -132,7 +137,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   if File.directory?("12cR1")
     # our shared folder for oracle 12c installation files
-    config.vm.synced_folder "12cR1", "/media/sf_12cR1", :mount_options => ["dmode=775","fmode=775","uid=54320","gid=54321"]
+    config.vm.synced_folder "12cR1", "/media/sf_12cR1", :mount_options => ["dmode=777","fmode=777","uid=54320","gid=54321"]
   end
 
 
@@ -218,7 +223,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           puts vm_name + " dns server role is master"
           config.vm.provision :shell, :inline => "sh /media/stagefiles/named_master.sh"
           if ENV['setup']
-            config.vm.provision :shell, :inline => "sh /media/stagefiles/run_ansible_playbook.sh #{cluster_type}" 
+            config.vm.provision :shell, :inline => "sh /media/stagefiles/run_ansible_playbook.sh #{cluster_type} #{ENV['giver']} #{ENV['dbver']}" 
           end
         end
         if vm_name == "collabn2" 

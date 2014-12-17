@@ -1,0 +1,12 @@
+{
+ "oracle_sw_image_db":[
+   {    
+     "filename":"linuxamd64_12102_database_1of2.zip",
+     "version":"12.1.0.2"
+   },
+   {
+     "filename":"linuxamd64_12102_database_2of2.zip",
+     "version":"12.1.0.2"
+   }
+ ]
+}
