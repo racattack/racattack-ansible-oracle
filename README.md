@@ -52,15 +52,26 @@ count_shared_disk       =   4
 
 place oracle binaries at 12cR1/
 
+- 12.1.0.2
     linuxamd64_12102_database_1of2.zip
     linuxamd64_12102_database_2of2.zip
     linuxamd64_12102_grid_1of2.zip
     linuxamd64_12102_grid_2of2.zip
+- 12.1.0.1
+    linuxamd64_12c_database_1of2.zip
+    linuxamd64_12c_database_2of2.zip
+    linuxamd64_12c_grid_1of2.zip
+    linuxamd64_12c_grid_2of2.zip
+- 11.2.0.4
+    p13390677_112040_Linux-x86-64_1of7.zip
+    p13390677_112040_Linux-x86-64_2of7.zip
+    p13390677_112040_Linux-x86-64_3of7.zip
+
 
 
 `vagrant up` will create the machines
 
-`setup=standard vagrant provision` will setup an standard oracle cluster
+`setup=standard vagrant provision` will setup an standard 12.1.0.2 oracle cluster
 
 `setup=flex vagrant provision` will setup an flex oracle cluster
 
@@ -70,5 +81,18 @@ if any leaf node is defined, cluster will be defaulted to flex
 
 then a `vagrant up` will start a clean environment. This is useful to avoid recreating the shared disk since is time consuming task.
 
+It is also possible to have different combinations of GI/DB installations. 
+The supported versions are (at the moment): 12.1.0.2, 12.1.0.1 and 11.2.0.4
+It works like this:
+
+`setup=standard | flex giver=12.1.0.2 | 12.1.0.1 | 11.2.0.4 dbver=12.1.0.2 | 12.1.0.1 | 11.2.0.4 vagrant provision`
+
+so if you want a 12.1.0.2 GI installation and a 11.2.0.4 database, it should look like this:
+
+`setup=standard giver=12.1.0.2 dbver=11.2.0.4`
+
+
+
 alvaro@kikitux.net
+oravirt@gmail.com
 
