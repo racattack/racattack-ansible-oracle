@@ -7,7 +7,7 @@ else
 fi
 
 if [ $3 ] ; then
-  DBVER=$2
+  DBVER=$3
 else
   DBVER="12.1.0.2"
 fi
