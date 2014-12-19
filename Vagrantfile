@@ -5,20 +5,23 @@
 VAGRANTFILE_API_VERSION = "2"
 
 #############################
-## 20141111
+## 20141218
 ## Alvaro Miranda
 ## http://kikitux.net
 ## alvaro at kikitux.net
+## Mikael Sandström
+## http://oravirt.wordpress.com
+## oravirt at gmail.com
 #############################
-##### BEGIN CUSTOMIZATION #####
+#### BEGIN CUSTOMIZATION ####
 #############################
 #define number of nodes
-num_APPLICATION     = 0
-num_LEAF_INSTANCES  = 0
-num_DB_INSTANCES    = 1
+num_APPLICATION       = 0
+num_LEAF_INSTANCES    = 0
+num_DB_INSTANCES      = 1
 #
 #define number of cores for guest
-num_CORE=1
+num_CORE              = 1
 #
 #define memory for each type of node in MBytes
 #
@@ -33,9 +36,9 @@ memory_LEAF_INSTANCES = 2300
 memory_DB_INSTANCES   = 3072
 #        
 #size of shared disk in GB
-size_shared_disk	= 5
+size_shared_disk	    = 5
 #number of shared disks
-count_shared_disk = 4
+count_shared_disk     = 4
 #
 #############################
 ##### END CUSTOMIZATION #####
@@ -223,7 +226,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           puts vm_name + " dns server role is master"
           config.vm.provision :shell, :inline => "sh /media/stagefiles/named_master.sh"
           if ENV['setup']
-            config.vm.provision :shell, :inline => "sh /media/stagefiles/run_ansible_playbook.sh #{cluster_type} #{ENV['giver']} #{ENV['dbver']}" 
+            config.vm.provision :shell, :inline => "bash /media/stagefiles/run_ansible_playbook.sh #{cluster_type} #{ENV['giver']} #{ENV['dbver']}" 
           end
         end
         if vm_name == "collabn2" 
