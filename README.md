@@ -84,11 +84,15 @@ It is also possible to have different combinations of GI/DB installations.
 The supported versions are (at the moment): 12.1.0.2, 12.1.0.1 and 11.2.0.4
 It works like this:
 
-`setup=standard | flex giver=12.1.0.2 | 12.1.0.1 | 11.2.0.4 dbver=12.1.0.2 | 12.1.0.1 | 11.2.0.4 vagrant provision`
+```bash
+setup=<standard|flex> giver=<12.1.0.2|12.1.0.1|11.2.0.4> dbver=<12.1.0.2|12.1.0.1|11.2.0.4> vagrant provision
+```
 
 so if you want a 12.1.0.2 GI installation and a 11.2.0.4 database, it should look like this:
 
-`setup=standard giver=12.1.0.2 dbver=11.2.0.4`
+```bash
+setup=standard giver=12.1.0.2 dbver=11.2.0.4 vagrant provision
+```
 
 
 
