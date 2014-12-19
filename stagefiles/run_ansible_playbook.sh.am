@@ -42,6 +42,11 @@ oracle_sw["gi":"12.1.0.2"]='true'
 oracle_sw["gi":"12.1.0.1"]='true'
 oracle_sw["gi":"11.2.0.4"]='true'
 
+#must pass 3 checks
+#variable set
+#variable is on the defined options
+#value must be 8 character long. Otherwise 11 or 12 would be a valid option. We need nn.n.n.n
+
 if [[ $GIVER && "${!oracle_sw[@]}" =~ "gi:$GIVER" && "${#GIVER}" -eq 8 ]]; then
   echo "GIVER VALID"
 else
