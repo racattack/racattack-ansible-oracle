@@ -42,14 +42,14 @@ oracle_sw["gi":"12.1.0.2"]='true'
 oracle_sw["gi":"12.1.0.1"]='true'
 oracle_sw["gi":"11.2.0.4"]='true'
 
-if [[ $GIVER && "${!oracle_sw[@]}" =~ "gi:$GIVER" ]]; then
+if [[ $GIVER && "${!oracle_sw[@]}" =~ "gi:$GIVER" && "${#GIVER}" -eq 8 ]]; then
   echo "GIVER VALID"
 else
   echo "GIVER INVALID"
   exit 1
 fi
 
-if [[ $DBVER && "${!oracle_sw[@]}" =~ "db:$DBVER" ]]; then
+if [[ $DBVER && "${!oracle_sw[@]}" =~ "db:$DBVER" && "${#DBVER}" -eq 8 ]]; then
   echo "DBVER VALID"
 else
   echo "DBVER INVALID"
