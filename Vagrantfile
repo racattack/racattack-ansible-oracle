@@ -44,6 +44,10 @@ count_shared_disk     = 4
 ##### END CUSTOMIZATION #####
 #############################
 
+#if not defined, set defaults
+ENV['giver']||=12.1.0.2
+ENV['dbver']||=12.1.0.2
+
 # cluster_type 
 #define cluster type, standard or flex
 if ENV['setup'] == "standard"
@@ -114,8 +118,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  #config.vm.box = "racattack/oracle65"
   config.vm.box = "kikitux/oracle6-racattack"
+  #config.vm.box = "racattack/oracle65"
 
   ## Virtualbox modifications
   ## we first setup memory and cpu
@@ -143,7 +147,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # our shared folder for oracle 12c installation files
     config.vm.synced_folder "12cR1", "/media/sf_12cR1", :mount_options => ["dmode=777","fmode=777","uid=54320","gid=54321"]
   end
-
 
   ## IMPORTANT
   ## vagrant work up to down, high node goes first
@@ -237,7 +240,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
     end
   end
-
 
   # This network is optional, that's why is at the end
 
