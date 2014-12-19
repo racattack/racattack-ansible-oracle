@@ -36,7 +36,7 @@ memory_LEAF_INSTANCES = 2300
 memory_DB_INSTANCES   = 3072
 #        
 #size of shared disk in GB
-size_shared_disk	    = 5
+size_shared_disk      = 5
 #number of shared disks
 count_shared_disk     = 4
 #
@@ -61,6 +61,7 @@ cluster_type = "flex" if num_LEAF_INSTANCES > 0
 # Force cluster_type to standard if GI Version is 11.2.0.4
 if ENV['giver'] == '11.2.0.4'
   cluster_type = "standard"
+  num_LEAF_INSTANCES = 0
 end
 
 #create inventory for ansible to run
