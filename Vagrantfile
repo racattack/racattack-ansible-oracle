@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 #############################
-## 20141218
+## 20141221
 ## Alvaro Miranda
 ## http://kikitux.net
 ## alvaro at kikitux.net
@@ -45,8 +45,19 @@ count_shared_disk     = 4
 #############################
 
 #if not defined, set defaults
-ENV['giver']||=12.1.0.2
-ENV['dbver']||=12.1.0.2
+ENV['giver']||="12.1.0.2"
+ENV['dbver']||=ENV['giver']
+
+#this will give us version in format of 12102
+giver_i = ENV['giver'].gsub('.','').to_i
+dbver_i = ENV['dbver'].gsub('.','').to_i
+
+if dbver_i > giver_i
+  puts "dbver found to be higher than giver, this will cause dbca to fail later"
+  puts "dbver must be same or lower of giver"
+  puts "failing now"
+  exit 1
+end
 
 # cluster_type 
 #define cluster type, standard or flex
@@ -56,14 +67,14 @@ else
   cluster_type = "flex"
 end
 
-# We need 1 DB HUB, so assume 1 if configured as 0 
+# We need 1 DB HUB, so assume 1 even if configured as 0 
 num_DB_INSTANCES = 1 if num_DB_INSTANCES == 0
 
 #note: if num_LEAF_INSTANCES is 1 or more, cluster will be defaulted to flex
 cluster_type = "flex" if num_LEAF_INSTANCES > 0
 
-# Force cluster_type to standard if GI Version is 11.2.0.4
-if ENV['giver'] == '11.2.0.4'
+# Force cluster_type to standard if GI Version is 11.2.0.4 or lower
+if giver_i < 12101
   cluster_type = "standard"
   num_LEAF_INSTANCES = 0
 end
@@ -132,7 +143,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if File.directory?("stagefiles")
     # our shared folder for scripts
     config.vm.synced_folder "stagefiles", "/media/stagefiles", :mount_options => ["dmode=555","fmode=444","gid=54321"]
-
     #clean all
     if ENV['setup'] == "clean"
       config.vm.provision :shell, :inline => "sh /media/stagefiles/clean.sh YES"
@@ -140,7 +150,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #run some scripts
       config.vm.provision :shell, :inline => $etc_hosts_script
     end
-
   end
 
   if File.directory?("12cR1")
