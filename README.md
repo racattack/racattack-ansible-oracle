@@ -3,13 +3,22 @@ racattack-ansible-oracle
 
 This is a joint work between 2 projects.
 
-https://github.com/racattack/vagrantfile
+[https://github.com/racattack/vagrantfile](https://github.com/racattack/vagrantfile)
 
 and
 
-https://github.com/oravirt/ansible-oracle
+[https://github.com/oravirt/ansible-oracle](https://github.com/racattack/vagrantfile)
 
 The idea is provide a fully automated racattack build from vm to database, 100% hands free
+
+
+
+### Before start
+
+If you are new to vagrant, the suggestion would be test the standalone vagrant project, which is documented here:
+[http://en.wikibooks.org/wiki/RAC_Attack_-_Oracle_Cluster_Database_at_Home/RAC_Attack_Automation](http://en.wikibooks.org/wiki/RAC_Attack_-_Oracle_Cluster_Database_at_Home/RAC_Attack_Automation)
+
+### This project
 
 Clone as:
 `git clone --recursive https://github.com/kikitux/racattack-ansible-oracle`
