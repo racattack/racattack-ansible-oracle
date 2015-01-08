@@ -7,7 +7,7 @@ This is a joint work between 2 projects.
 
 and
 
-[https://github.com/oravirt/ansible-oracle](https://github.com/racattack/vagrantfile)
+[https://github.com/oravirt/ansible-oracle](https://github.com/oravirt/ansible-oracle)
 
 The idea is provide a fully automated racattack build from vm to database, 100% hands free
 
@@ -74,6 +74,11 @@ place oracle binaries at 12cR1/
     p13390677_112040_Linux-x86-64_1of7.zip
     p13390677_112040_Linux-x86-64_2of7.zip
     p13390677_112040_Linux-x86-64_3of7.zip
+  
+    p10404530_112030_Linux-x86-64_1of7.zip
+    p10404530_112030_Linux-x86-64_2of7.zip
+    p10404530_112030_Linux-x86-64_3of7.zip
+
 
 
 
@@ -92,12 +97,12 @@ then a `vagrant up` will start a clean environment. This is useful to avoid recr
 At this moment, defaults are giver and dbver 12.1.0.2
 
 It is also possible to have different combinations of GI/DB installations. 
-The supported versions are (at the moment): 12.1.0.2, 12.1.0.1 and 11.2.0.4
+The supported versions are (at the moment): 12.1.0.2, 12.1.0.1 and 11.2.0.4, 11.2.0.3
 
 It works like this:
 
 ```bash
-setup=<standard|flex> [giver=<12.1.0.2|12.1.0.1|11.2.0.4>] [dbver=<12.1.0.2|12.1.0.1|11.2.0.4>] vagrant provision
+setup=<standard|flex> [giver=<12.1.0.2|12.1.0.1|11.2.0.4|11.2.0.3>] [dbver=<12.1.0.2|12.1.0.1|11.2.0.4|11.2.0.3>] vagrant provision
 ```
 
 so if you want a 12.1.0.2 GI installation and a 11.2.0.4 database, it should look like this:

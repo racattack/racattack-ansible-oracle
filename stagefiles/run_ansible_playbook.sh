@@ -37,10 +37,12 @@ declare -A oracle_sw
 oracle_sw["db":"12.1.0.2"]='{"oracle_sw_image_db":[{"filename":"linuxamd64_12102_database_1of2.zip","version":"12.1.0.2"},{"filename":"linuxamd64_12102_database_2of2.zip","version":"12.1.0.2"}]}'
 oracle_sw["db":"12.1.0.1"]='{"oracle_sw_image_db":[{"filename":"linuxamd64_12c_database_1of2.zip","version":"12.1.0.1"},{"filename":"linuxamd64_12c_database_2of2.zip","version":"12.1.0.1"}]}'
 oracle_sw["db":"11.2.0.4"]='{"oracle_sw_image_db":[{"filename":"p13390677_112040_Linux-x86-64_1of7.zip","version":"11.2.0.4"},{"filename":"p13390677_112040_Linux-x86-64_2of7.zip","version":"11.2.0.4"}]}'
+oracle_sw["db":"11.2.0.3"]='{"oracle_sw_image_db":[{"filename":"p10404530_112030_Linux-x86-64_1of7.zip","version":"11.2.0.3"},{"filename":"p10404530_112030_Linux-x86-64_2of7.zip","version":"11.2.0.3"}]}'
 
 oracle_sw["gi":"12.1.0.2"]='true'
 oracle_sw["gi":"12.1.0.1"]='true'
 oracle_sw["gi":"11.2.0.4"]='true'
+oracle_sw["gi":"11.2.0.3"]='true'
 
 #must pass 3 checks
 #variable set
