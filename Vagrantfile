@@ -129,6 +129,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
+  config.ssh.insert_key = false
   config.vm.box = "kikitux/oracle6-racattack"
   #config.vm.box = "racattack/oracle65"
 
