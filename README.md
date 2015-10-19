@@ -21,7 +21,7 @@ If you are new to vagrant, the suggestion would be test the standalone vagrant p
 ### This project
 
 Clone as:
-`git clone --recursive https://github.com/kikitux/racattack-ansible-oracle`
+`git clone --recursive https://github.com/racattack/racattack-ansible-oracle`
 
 `cd racattack-ansible-oracle`
 
