@@ -11,8 +11,6 @@ and
 
 The idea is provide a fully automated racattack build from vm to database, 100% hands free
 
-
-
 ### Before start
 
 If you are new to vagrant, the suggestion would be test the standalone vagrant project, which is documented here:
@@ -61,38 +59,40 @@ count_shared_disk       =   4
 
 place oracle binaries at 12cR1/
 
+For 12.1.0.2:
     linuxamd64_12102_database_1of2.zip
     linuxamd64_12102_database_2of2.zip
     linuxamd64_12102_grid_1of2.zip
     linuxamd64_12102_grid_2of2.zip
 
+For 12.1.0.1:
     linuxamd64_12c_database_1of2.zip
     linuxamd64_12c_database_2of2.zip
     linuxamd64_12c_grid_1of2.zip
     linuxamd64_12c_grid_2of2.zip
 
+For 11.2.0.4:
     p13390677_112040_Linux-x86-64_1of7.zip
     p13390677_112040_Linux-x86-64_2of7.zip
     p13390677_112040_Linux-x86-64_3of7.zip
   
+ For 11.2.0.3: 
     p10404530_112030_Linux-x86-64_1of7.zip
     p10404530_112030_Linux-x86-64_2of7.zip
     p10404530_112030_Linux-x86-64_3of7.zip
 
-
-
-
+### First boot
 `vagrant up` will create the machines
+This process can take time as here is where the shared disk will be created.
 
+If you wish to reinstall, and avoid waiting on this step, you can use `setup=clean vagrant provision`
+
+### Installation
 `setup=standard vagrant provision` will setup an standard 12.1.0.2 oracle cluster
 
 `setup=flex vagrant provision` will setup an flex oracle cluster
 
 if any leaf node is defined, cluster will be defaulted to flex
-
-`setup=clean vagrant provision` will delete `/u01` , clean up previous installation, bring shared disk to clean state and shutdown the vm.
-
-then a `vagrant up` will start a clean environment. This is useful to avoid recreating the shared disk since is time consuming task.
 
 At this moment, defaults are giver and dbver 12.1.0.2
 
@@ -111,9 +111,16 @@ so if you want a 12.1.0.2 GI installation and a 11.2.0.4 database, it should loo
 setup=standard dbver=11.2.0.4 vagrant provision
 ```
 
+### Clean up for reinstall
+`setup=clean vagrant provision` will delete `/u01` , clean up previous installation, bring shared disk to clean state and shutdown the vm.
+
+then a `vagrant up` will start a clean environment. This is useful to avoid recreating the shared disk since is time consuming task.
+
+### Delete
+`vagrant destroy -f` will delete all the VMs and the shared disk
+
 
 
 alvaro @ kikitux.net
 
 oravirt @ gmail.com
-
