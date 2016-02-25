@@ -221,7 +221,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         #how many shared disk
         (1..count_shared_disk).each do |disk|
           file_to_dbdisk = "racattack-shared-disk"
-          if !File.exist?("#{file_to_dbdisk}#{disk}.vdi")
+          if !File.exist?("#{file_to_dbdisk}#{disk}.vdi") and num_DB_INSTANCES==i
             unless give_info==false
               puts "on first boot shared disks will be created, this will take some time"
               give_info=false
