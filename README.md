@@ -67,7 +67,7 @@ For 12.1.0.2:
     linuxamd64_12102_database_2of2.zip
     linuxamd64_12102_grid_1of2.zip
     linuxamd64_12102_grid_2of2.zip
-    ```
+ ```
 
 For 12.1.0.1:
 ```
@@ -75,21 +75,21 @@ For 12.1.0.1:
     linuxamd64_12c_database_2of2.zip
     linuxamd64_12c_grid_1of2.zip
     linuxamd64_12c_grid_2of2.zip
-    ```
+ ```
 
 For 11.2.0.4:
 ```
     p13390677_112040_Linux-x86-64_1of7.zip
     p13390677_112040_Linux-x86-64_2of7.zip
     p13390677_112040_Linux-x86-64_3of7.zip
-    ```
+ ```
   
  For 11.2.0.3: 
  ```
     p10404530_112030_Linux-x86-64_1of7.zip
     p10404530_112030_Linux-x86-64_2of7.zip
     p10404530_112030_Linux-x86-64_3of7.zip
-    ```
+ ```
 
 ### First boot
 `vagrant up` will create the machines
