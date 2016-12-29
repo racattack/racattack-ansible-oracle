@@ -28,51 +28,38 @@ edit Vagranfile and adjust number of nodes, ram and size of shared disk
 
 ```ruby
 #############################
-#### BEGIN CUSTOMIZATION ####
+##### BEGIN CUSTOMIZATION #####
 #############################
-
-#versions can be set by variables
-#or here
-ENV['giver']||="12.1.0.2"
-ENV['dbver']||="12.1.0.2"
-
-#domain to be used in all nodes
-domain = "domain"
-
-# array of dc names
-#dca = ["prd"]
-dca = ["prd","dev"]
-#dca = ["prd","stb","dev"]
-
-# define number of nodes
-num_APPLICATION       = 1
-num_LEAF_INSTANCES    = 1
-num_DB_INSTANCES      = 2
-
+#define number of nodes
+num_APPLICATION         =   0
+num_LEAF_INSTANCES      =   0
+num_DB_INSTANCES        =   1
+#
 #define number of cores for guest
-num_CORE              = 2
- 
+num_CORE                =   1
+#
 #define memory for each type of node in MBytes
 #
 #for leaf nodes, the minimun can be  2300, otherwise pre-check will fail for
 #automatic ulimit values calculated based on ram
 #
-#for database nodes, the minimum suggested is 3072 for standard cluster
-#for flex cluster, consider 4500 or more
-memory_APPLICATION    = 2500
-memory_LEAF_INSTANCES = 3300
-memory_DB_INSTANCES   = 5500
-         
+#for database nodes, the minimum suggested is 3072
+#
+memory_APPLICATION      =   1500
+memory_LEAF_INSTANCES   =   2300
+memory_DB_INSTANCES     =   3072
+#        
 #size of shared disk in GB
-#disk are data x2 , fra x1
-size_shared_disk      = 50
-
+size_shared_disk        =   5
+#number of shared disks
+count_shared_disk       =   4
+#
 #############################
 ##### END CUSTOMIZATION #####
 #############################
 ```
 
-place oracle binaries at swrepo/
+place oracle binaries at 12cR1/
 
 For 12.1.0.2:
     linuxamd64_12102_database_1of2.zip
